@@ -1,0 +1,129 @@
+body {
+    background-color: green;
+}
+
+.firstview {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.image {
+    float: left;
+    width: 338px;
+    height: 398px;
+    border: 1px solid gray;
+}
+
+.loginform {
+    float: right;
+    width: 248px;
+    height: 100px;
+    background-color: white;
+    margin-top: 0px;
+    border: 1px solid gray;
+    padding-bottom: 31px;
+    margin-bottom: 2px;
+}
+
+.signupform {
+    float: right;
+    width: 248px;
+    height: 263px;
+    background-color: white;
+    margin-top: 0px;
+    border: 1px solid gray;
+}
+
+.message {
+    color: red;
+    font-weight: bold;
+}
+
+div button {
+    width: 30%;
+    margin-left: 70%;
+}
+
+div input {
+    width: 55%;
+    float: right;
+    margin-bottom: 1px;
+}
+
+div label {
+    padding-left: 1px;
+    width: 36%;
+    float: left;
+    margin-bottom: 3px;
+}
+
+div select {
+    width: 58.3%;
+    float: right;
+    margin-bottom: 1px;
+}
+
+h4 {
+    padding-left: 5px;
+    margin-bottom: 2px;
+    text-align: center;
+    margin-top:10px;
+}
+
+.container {
+    position: absolute;
+    top: 10%;
+}
+
+.container-tabs {
+    width: 600px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid navy;
+}
+
+.tabs {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tabs.active {
+    background-color: navy;
+    color: white;
+    transition: all 0.3s;
+}
+
+.content {
+    position: absolute;
+    display: none;
+}
+
+.activeContent {
+    display: block;
+}
+
+.signout {
+    width: 40%;
+}
+
+.signinerror {
+    color: red;
+    font-weight: bold;
+    width: 600px;
+}
+
+.signuperror {
+    color: red;
+    font-weight: bold;
+    width: 600px;
+}

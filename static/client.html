@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="icon" href="static/favicon.ico" type='image/x-icon'/>
+        <script src="static/client.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <!-- <script src="serverstub.js" type="text/javascript"></script> -->
+        <title>TwidderBootstrap</title>
+    </head>
+    <body>
+    <!-- <body>
+        <div id="firstview" class="firstview"> -->
+        <div>
+            <!--Script for the welcome view-->
+            <script type="text/view" id="welcomeview">
+                <div class="container">
+                    <div class="row">
+                        <div class="image col-md-4">
+                            <img class="img-fluid" src="static/wimage.png" alt="Logo and slogan">
+                        </div>
+                        <div class="loginform col-md-4 mt-5">
+                            <h4>Login</h4>
+                            <form onsubmit="signInMechanism(); return false">
+                                <div>
+                                    <label class="form-label" for="email1">E-mail</label>
+                                    <input class="form-control" type="email" name="email1" id="email1" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="password1">Password</label>
+                                    <input class="form-control" type="password" name="password1" id="password1" minlength="8" required>
+                                </div>
+                                <div class="signinerror">
+                                    <label id="signinerror"></label>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success mb-3" type="submit" name="login">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="signupform col-md-4 mt-5">
+                            <h4>Sign up</h4>
+                            <!-- <form onsubmit="if (checkSamePasswords()!=true) {event.preventDefault()} else {console.log(serverstub.signUp(formToObject())); console.log(formToObject())}; console.log(serverstub.signUp(formToObject())['success']); "> -->
+                            <form onsubmit="if (checkSamePasswords()!=true) {event.preventDefault()} else {signUpMechanism(); return false}">
+                                <div>
+                                    <label class="form-label" for="email2">E-mail</label>
+                                    <input class="form-control" type="email" name="email2" id="email2" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="password2">Password</label>
+                                    <input class="form-control" type="password" name="password2" id="password2" minlength="8" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="password3">Repeat Password</label>
+                                    <input class="form-control" type="password" name="password3" minlength="8" id="password3" onkeyup='checkSamePasswords();' required>
+                                </div>
+                                <div id="message" class="message"></div>
+                                <div>
+                                    <label class="form-label" for="firstname">First Name</label>
+                                    <input class="form-control" type="text" name="firstname" id="firstname" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="familyname">Family Name</label>
+                                    <input class="form-control" type="text" name="familyname" id="familyname" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="gender">Gender</label>
+                                    <select class="form-select" name="gender" id="gender" required>
+                                        <option value="">Select:</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="city">City</label>
+                                    <input class="form-control" type="text" name="city" id="city" required>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="country">Country</label>
+                                    <input class="form-control" type="text" name="country" id="country" required>
+                                </div>
+                                <div class="signuperror">
+                                    <label id="signuperror"></label>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success mb-3" type="submit" name="signup">Sign up</button>
+                                </div>
+                                <div id="message2"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </script>
+
+            <!--Script for the profile view-->
+            <script type="text/view" id="profileview">
+                <div class="container mt-5">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-browse-tab" data-bs-toggle="pill" data-bs-target="#pills-browse" type="button" role="tab" aria-controls="pills-browse" aria-selected="false">Browse</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account" aria-selected="false">Account</button>
+                    </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <h1>Home</h1>
+                        <div class="card text-white bg-primary mb-3">
+                            <div class="card-header">Pinned Tweed</div>
+                            <div class="card-body pinnedtweed" id="pinnedtweed" ondrop="drop(event);" ondragover="allowDrop(event);"></div>
+                        </div>
+                        <div class="personalinfosbutton" id="personalinfosbutton">
+                            <form>
+                                <button class="btn btn-secondary mb-3" type="button" onclick="displayPersonalInfos();">Show personal infos</button>
+                            </form>
+                        </div>
+                        <div class="card bg-light mb-3">
+                            <div class="card-body personalinfos" id="personalinfos">
+                            </div>
+                        </div>
+                        <div class="postmessage" ondrop="drop(event);" ondragover="allowDrop(event);">
+                            <form>
+                                <textarea class="form-control" name="textpostmessage" id="textpostmessage" cols="70" rows="5"></textarea>
+                                <br>
+                                <button class="btn btn-success mb-3" type="button" onclick="postTheMessage(); clearTextarea();" name="postmessagebutton">Post message</button>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="wallbutton1" id="wallbutton1">
+                            <form>
+                                <button class="btn btn-secondary mb-3" id="wallbutton1" type="button" onclick="displayPostedMessages();">Show/Update the wall</button>
+                            </form>
+                        </div>
+                        <div id="wall" class="wall" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        </div>
+                        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <p draggable="true" ondragstart="drag(event);" id="drag1">admin@mail.com: Example of a "Tweed" that can be pinned</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-browse" role="tabpanel" aria-labelledby="pills-browse-tab">
+                        <h1>Browse</h1>
+                        <p>Search a user by email to see his wall</p>
+                        <div>
+                            <form>
+                                <input class="form-control" type="email" name="searchuser" id="searchuser" placeholder="mail@example.com"></input>
+                                <br>
+                                <button class="btn btn-success mb-3" type="button" onclick="searchUser();" name="searchuser">Search user</button>
+                            </form>
+                        </div>
+                        <div id="searchusermessage"></div>
+                        <div id="searchresult">
+                            <div class="userinfos" id="userinfos"></div>
+                            <br>
+                            <div class="postotheruserwall" id="postotheruserwall">
+                                <form>
+                                    <textarea class="form-control" name="textpostmessageotheruser" id="textpostmessageotheruser" cols="70" rows="5"></textarea>
+                                    <br>
+                                    <button class="btn btn-success mb-3" type="button" onclick="postTheMessageOtherWall(); clearBrowseTextarea();" name="postmessagebutton">Post message</button>
+                                </form>
+                            </div>
+                            <div>
+                                <form>
+                                    <button class="btn btn-secondary mb-3" id="wallbutton" type="button" onclick="updatePostedMessages();">Update the wall</button>
+                                </form>
+                            </div>
+                            <div class="userwall" id="userwall"></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
+                        <h1>Account</h1>
+                        <p>Change your password or sign out here</p>
+                        <form onsubmit="if (checkSamePasswords2()!=true) {event.preventDefault()} else {changePassword(); return false}">
+                            <div>
+                                <label for="password4">Old Password</label>
+                                <input class="form-control" type="password" name="password4" minlength="8" id="password4" required>
+                            </div>
+                            <div>
+                                <label for="password5">New Password</label>
+                                <input class="form-control" type="password" name="password5" minlength="8" id="password5" required>
+                            </div>
+                            <div>
+                                <label for="password6">Repeat New Password</label>
+                                <input class="form-control" type="password" name="password6" minlength="8" id="password6" onkeyup='checkSamePasswords2();' required>
+                            </div>
+                            <br>
+                            <div id="changepswmsg" class="changepswmsg"></div>
+                            <div>
+                                <button class="btn btn-warning mb-3" type="submit" name="changepassword">Change Password</button>
+                            </div>
+                        </form>
+                        <button class="btn btn-danger mb-3" class="signout" name="signout" onClick="signOut()">Sign Out</button>
+                    </div>
+                    </div>                      
+                    
+                    <!-- <div class="container-tabs">
+                        <div class="tabs active nav-link" data-id="1">Home</div>
+                        <div class="tabs nav-link" data-id="2">Browse</div>
+                        <div class="tabs nav-link" data-id="3">Account</div>
+                    </div>
+                    
+                    <div class="content activeContent" data-id="1">
+                        <h1>Home</h1>
+                        <div class="pinnedtweed" id="pinnedtweed" ondrop="drop(event);" style="border: solid 2px navy; margin-top: 10px; margin-bottom: 10px; height: 50px;" ondragover="allowDrop(event);"></div>
+                        <div class="personalinfosbutton" id="personalinfosbutton">
+                            <form>
+                                <button type="button" onclick="displayPersonalInfos();">Show personal infos</button>
+                            </form>
+                        </div>
+                        <div class="personalinfos" id="personalinfos">
+                        </div>
+                        <div class="postmessage" ondrop="drop(event);" ondragover="allowDrop(event);">
+                            <form>
+                                <textarea name="textpostmessage" id="textpostmessage" cols="70" rows="5"></textarea>
+                                <br>
+                                <button type="button" onclick="postTheMessage(); clearTextarea();" name="postmessagebutton">Post message</button>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="wallbutton1" id="wallbutton1">
+                            <form>
+                                <button id="wallbutton1" type="button" onclick="displayPostedMessages();">Show/Update the wall</button>
+                            </form>
+                        </div>
+                        <div id="wall" class="wall" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        </div>
+                        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <p draggable="true" ondragstart="drag(event);" id="drag1">admin@mail.com: Example of a "Tweed" that can be pinned</p>
+                        </div>
+                    </div>
+                    <div class="content" data-id="2">
+                        <h1>Browse</h1>
+                        <p>Search a user by email to see his wall</p>
+                        <div>
+                            <form>
+                                <label for="searchuser">E-mail</label>
+                                <input type="email" name="searchuser" id="searchuser"></input>
+                                <button type="button" onclick="searchUser();" name="searchuser">Search user</button>
+                            </form>
+                        </div>
+                        <div id="searchusermessage"></div>
+                        <div id="searchresult">
+                            <div class="userinfos" id="userinfos"></div>
+                            <br>
+                            <div class="postotheruserwall" id="postotheruserwall">
+                                <form>
+                                    <textarea name="textpostmessageotheruser" id="textpostmessageotheruser" cols="70" rows="5"></textarea>
+                                    <br>
+                                    <button type="button" onclick="postTheMessageOtherWall(); clearBrowseTextarea();" name="postmessagebutton">Post message</button>
+                                </form>
+                            </div>
+                            <div>
+                                <form>
+                                    <button id="wallbutton" type="button" onclick="updatePostedMessages();">Update the wall</button>
+                                </form>
+                            </div>
+                            <div class="userwall" id="userwall"></div>
+                        </div>
+                    </div>
+                    <div class="content" data-id="3">
+                        <h1>Account</h1>
+                        <p>This is the account content paragraph</p>
+                        <form onsubmit="if (checkSamePasswords2()!=true) {event.preventDefault()} else {changePassword(); return false}">
+                            <div>
+                                <label for="password4">Old Password</label>
+                                <input type="password" name="password4" minlength="8" id="password4" required>
+                            </div>
+                            <div>
+                                <label for="password5">New Password</label>
+                                <input type="password" name="password5" minlength="8" id="password5" required>
+                            </div>
+                            <div>
+                                <label for="password6">Repeat New Password</label>
+                                <input type="password" name="password6" minlength="8" id="password6" onkeyup='checkSamePasswords2();' required>
+                            </div>
+                            <div id="changepswmsg" class="changepswmsg"></div>
+                            <div>
+                                <button type="submit" name="changepassword">Change Password</button>
+                            </div>
+                        </form>
+                        <button class="signout" name="signout" onClick="signOut()">Sign Out</button>
+                    </div>
+                    
+
+                </div> -->
+            </script>
+
+            <!-- Script to determine which view to display -->
+            <!-- <script>
+                displayView();
+            </script> -->
+
+            <!-- Script to display the tabs in the profile view 
+                giving the user actions-->
+            <!-- <script>
+                displayTabs();
+            </script> -->
+        </div>
+        <div id="firstview" class="firstview">
+        </div>
+    </body>
+</html>
