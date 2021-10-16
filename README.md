@@ -1,3 +1,3 @@
 # Twidder
 
-Small social network inspired by Twitter. Created for the TDD97 Web Programming course in Linköping University.
+Small social network inspired by Twitter. Created for the TDDD97 Web Programming course in Linköping University.
